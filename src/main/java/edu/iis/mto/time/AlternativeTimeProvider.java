@@ -5,7 +5,7 @@ package edu.iis.mto.time;
  */
 public class AlternativeTimeProvider implements ITime {
 
-    private static long timeToAdd = 0;
+    public static long timeToAdd = 0;
 
     @Override
     public long currentTimeMillis() {
