@@ -13,6 +13,7 @@ public class Order {
 	private DateTime subbmitionDate;
 
 	public Order() {
+
 		orderState = State.CREATED;
 	}
 
@@ -28,13 +29,13 @@ public class Order {
 		requireState(State.CREATED);
 
 		orderState = State.SUBMITTED;
-		subbmitionDate = new DateTime();
+		subbmitionDate = new DateTime(new TimeProvider().currentTimeMillis());
 
 	}
 
 	public void confirm() {
 		requireState(State.SUBMITTED);
-		int hoursElapsedAfterSubmittion = Hours.hoursBetween(subbmitionDate, new DateTime()).getHours();
+		int hoursElapsedAfterSubmittion = Hours.hoursBetween(subbmitionDate, new DateTime(new TimeProvider().currentTimeMillis())).getHours();
 		if(hoursElapsedAfterSubmittion > VALID_PERIOD_HOURS){
 			orderState = State.CANCELLED;
 			throw new OrderExpiredException();
@@ -47,7 +48,8 @@ public class Order {
 	}
 
 	State getOrderState() {
-		return orderState;
+
+	    return orderState;
 	}
 	
 	private void requireState(State... allowedStates) {
