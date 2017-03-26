@@ -5,8 +5,10 @@ package edu.iis.mto.time;
  */
 public class AlternativeTimeProvider implements ITime {
 
+    private static long timeToAdd = 0;
+
     @Override
     public long currentTimeMillis() {
-        return System.currentTimeMillis() + (24 * 60 * 60 * 1000); //with one extra day
+        return System.currentTimeMillis() + timeToAdd; //with how much extra time to add
     }
 }
