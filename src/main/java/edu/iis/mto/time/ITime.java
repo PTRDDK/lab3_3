@@ -5,5 +5,5 @@ package edu.iis.mto.time;
  */
 public interface ITime {
 
-    long currntTimeMillis();
+    long currentTimeMillis();
 }
