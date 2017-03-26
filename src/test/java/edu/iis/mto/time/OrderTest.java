@@ -16,4 +16,12 @@ public class OrderTest {
         order.submit();
         order.confirm();
     }
+
+    @Test(expected = OrderExpiredException.class)
+    public void orderTestExpiredAlready() throws Exception{
+        AlternativeTimeProvider.timeToAdd = 25 * 60 * 60 * 1000;
+        Order order = new Order();
+        order.submit();
+        order.confirm();
+    }
 }
